@@ -1,7 +1,7 @@
 {
     "name": "retouch",
     "version": "1.0.0",
-    "author": "otokotoba",
+    "author": "Otokotoba",
     "description": "Retouch is a discord bot to protect your servers from trolling.",
     "license": "MIT",
     "private": true,
