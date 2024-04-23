@@ -41,8 +41,8 @@ export class Args {
     public static readonly INFO_OPTION: APIApplicationCommandBasicOption = {
         name: Lang.getRef('arguments.option', Language.Default),
         name_localizations: Lang.getRefLocalizationMap('arguments.option'),
-        description: Lang.getRef('argDescs.helpOption', Language.Default),
-        description_localizations: Lang.getRefLocalizationMap('argDescs.helpOption'),
+        description: Lang.getRef('argDescs.infoOption', Language.Default),
+        description_localizations: Lang.getRefLocalizationMap('argDescs.infoOption'),
         type: ApplicationCommandOptionType.String,
         choices: [
             {
@@ -50,11 +50,11 @@ export class Args {
                 name_localizations: Lang.getRefLocalizationMap('infoOptions.about'),
                 value: InfoOption.ABOUT,
             },
-            {
-                name: Lang.getRef('infoOptions.translate', Language.Default),
-                name_localizations: Lang.getRefLocalizationMap('infoOptions.translate'),
-                value: InfoOption.TRANSLATE,
-            },
+            // {
+            //     name: Lang.getRef('infoOptions.translate', Language.Default),
+            //     name_localizations: Lang.getRefLocalizationMap('infoOptions.translate'),
+            //     value: InfoOption.TRANSLATE,
+            // },
         ],
     };
 }

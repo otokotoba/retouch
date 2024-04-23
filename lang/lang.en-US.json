@@ -71,10 +71,7 @@
                             "{{REF:links.sourceEmbed}}",
                             "{{REF:links.docsEmbed}}",
                             "{{REF:links.termsEmbed}}",
-                            "{{REF:links.voteEmbed}}",
-                            "{{REF:links.donateEmbed}}",
-                            "{{REF:links.supportEmbed}}",
-                            "{{REF:links.inviteEmbed}}"
+                            "{{REF:links.voteEmbed}}"
                         ]
                     },
                     {
@@ -186,7 +183,7 @@
             "translators": "[TranslatorName#1234](https://github.com/)"
         },
         "bot": {
-            "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features."
+            "description": "{{COM:bot.name}} is a discord bot to protect your servers from trolling."
         },
         "chatCommands": {
             "dev": "dev",
