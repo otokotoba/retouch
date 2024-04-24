@@ -45,23 +45,5 @@ export class GuildJoinHandler implements EventHandler {
                 })
             );
         }
-
-        // Send welcome message to owner
-        if (owner) {
-            await MessageUtils.send(
-                owner.user,
-                Lang.getEmbed('displayEmbeds.welcome', data.lang, {
-                    CMD_LINK_HELP: FormatUtils.commandMention(
-                        await ClientUtils.findAppCommand(
-                            guild.client,
-                            Lang.getRef('chatCommands.help', Language.Default)
-                        )
-                    ),
-                }).setAuthor({
-                    name: guild.name,
-                    iconURL: guild.iconURL(),
-                })
-            );
-        }
     }
 }
