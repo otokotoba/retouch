@@ -18,7 +18,7 @@
             "helpContactSupport": {
                 "title": "Help - {{REF:helpOptions.contactSupport}}",
                 "description": [
-                    "Have a question or feedback? Join our support server at the link below!"
+                    "Have a question or feedback? See the known issues or create a new issue on GitHub!"
                 ],
                 "fields": [
                     {
@@ -272,8 +272,8 @@
             "commands": "Commands"
         },
         "helpOptionDescs": {
-            "contactSupport": "❓ {{REF:helpOptions.contactSupport}} ❓",
-            "commands": "{{REF:helpOptions.commands}} -- What commands are there? How do I restrict who is allowed to use commands?"
+            "contactSupport": "{{REF:helpOptions.contactSupport}}",
+            "commands": "{{REF:helpOptions.commands}}"
         },
         "infoOptions": {
             "about": "About",
@@ -296,7 +296,7 @@
             "donateEmbed": "[Donate via PayPal]({{COM:links.donate}})",
             "inviteEmbed": "[Invite {{COM:bot.name}} to a Server!]({{COM:links.invite}})",
             "sourceEmbed": "[View Source Code]({{COM:links.source}})",
-            "supportEmbed": "[Join Support Server]({{COM:links.support}})",
+            "supportEmbed": "[Contact Support]({{COM:links.support}})",
             "templateEmbed": "[Discord Bot TypeScript Template]({{COM:links.template}})",
             "termsEmbed": "[View Terms of Service]({{COM:links.terms}})",
             "voteEmbed": "[Vote for {{COM:bot.name}}!]({{COM:links.vote}})"
