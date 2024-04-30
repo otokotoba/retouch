@@ -22,7 +22,7 @@ export class TokenTrigger implements Trigger {
         Logger.info('message.content: ' + (content.length !== 0 ? content : 'empty'));
 
         if (!content) {
-            return true;
+            return false;
         }
 
         const urls = Array.from(urlRegex.exec(content));
