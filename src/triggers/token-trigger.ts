@@ -3,11 +3,11 @@ import { Message } from 'discord.js';
 import { Trigger } from './trigger.js';
 import { EventData } from '../models/internal-models.js';
 import { Logger } from '../services/logger.js';
-import { ClientUtils, MessageUtils } from '../utils/index.js';
+import { ClientUtils, FormatUtils, MessageUtils } from '../utils/index.js';
 
-const urlRegex =
+const URL_REGEX =
     /(?:https?:\/\/)(?:www\.)?(?:[-a-z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b)*(?:\/[/\d\w.-]*)*(?:[?])*(?:.+)*/gi;
-const tokenRegex = /[a-z\d\-._~+/]{20,}=*/gi; // The quantifier is big enough not to match ordinary English words.
+const TOKEN_REGEX = /[a-z\d\-._~+/]{20,}=*/gi; // The quantifier is big enough not to match ordinary English words.
 
 export class TokenTrigger implements Trigger {
     constructor() {}
@@ -17,6 +17,7 @@ export class TokenTrigger implements Trigger {
     public tokens: string[] = [];
 
     public triggered(msg: Message<boolean>): boolean {
+        this.tokens = [];
         const content = msg.content;
 
         Logger.info('message.content: ' + (content.length !== 0 ? content : 'empty'));
@@ -25,19 +26,22 @@ export class TokenTrigger implements Trigger {
             return false;
         }
 
-        const urls = Array.from(urlRegex.exec(content));
-        const tokenLikes = Array.from(tokenRegex.exec(content));
+        const urls = Array.from(content.matchAll(URL_REGEX) ?? [], arr => arr[0]);
+        const tokenLikes = Array.from(content.matchAll(TOKEN_REGEX) ?? [], arr => arr[0]);
 
-        for (const t of tokenLikes) {
-            for (const url of urls) {
-                if (!url.includes(t)) {
+        if (urls.length === 0) {
+            this.tokens = tokenLikes;
+        } else {
+            for (const t of tokenLikes) {
+                if (!urls.some(url => url.includes(t))) {
                     this.tokens.push(t);
                 }
             }
         }
 
-        Logger.info(`urls: ${urls}`);
-        Logger.info(`tokens: ${this.tokens}`);
+        Logger.info(FormatUtils.multiLines(['urls: ', ...urls]));
+        Logger.info(FormatUtils.multiLines(['tokenLikes:', ...tokenLikes]));
+        Logger.info(FormatUtils.multiLines(['tokens:', ...this.tokens]));
 
         return this.tokens.length > 0;
     }
@@ -47,10 +51,10 @@ export class TokenTrigger implements Trigger {
         if (notifyChannel) {
             await MessageUtils.send(
                 notifyChannel,
-                [
+                FormatUtils.multiLines([
                     `🚨 ${msg.author} attempted to send a message including tokens.`,
-                    `tokens(only first 10 characters) : ${this.tokens.map(t => t.substring(0, 10))}`,
-                ].join('\n')
+                    `tokens(only first 10 characters) : ${this.tokens.map(t => t.substring(0, 10)).join(', ')}`,
+                ])
             );
         }
 
