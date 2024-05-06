@@ -32,7 +32,8 @@
         "start:pm2": "npm run build && npm run pm2:start",
         "pm2:start": "pm2 start process.json",
         "pm2:stop": "pm2 stop process.json",
-        "pm2:delete": "pm2 delete process.json"
+        "pm2:delete": "pm2 delete process.json",
+        "test": "c8 mocha --enable-source-maps"
     },
     "dependencies": {
         "@discordjs/rest": "2.2.0",
@@ -55,17 +56,26 @@
         "remove-markdown": "0.5.0"
     },
     "devDependencies": {
+        "@istanbuljs/nyc-config-typescript": "^1.0.2",
+        "@types/chai": "^4.3.15",
         "@types/express": "4.17.21",
         "@types/luxon": "3.4.2",
+        "@types/mocha": "^10.0.6",
         "@types/node": "^20.11.28",
         "@types/node-schedule": "2.1.6",
         "@types/remove-markdown": "0.3.4",
+        "@types/sinon": "^17.0.3",
         "@typescript-eslint/eslint-plugin": "^7.2.0",
         "@typescript-eslint/parser": "^7.2.0",
+        "c8": "^9.1.0",
+        "chai": "^5.1.0",
         "eslint": "^8.57.0",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-unicorn": "^51.0.1",
+        "mocha": "^10.4.0",
         "prettier": "^3.2.5",
+        "sinon": "^17.0.1",
+        "ts-node": "^10.9.2",
         "typescript": "^5.4.2"
     },
     "packageManager": "npm@10.5.2+sha256.df0a1f7691654b94786013e5d5b80a873a7ffbae9c82c3bec8b5db76bc3b7dfd"
