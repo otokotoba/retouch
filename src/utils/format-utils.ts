@@ -54,4 +54,8 @@ export class FormatUtils {
     public static fileSize(bytes: number): string {
         return filesize(bytes, { output: 'string', pad: true, round: 2 });
     }
+
+    public static multiLines(lines: string[]): string {
+        return lines.join('\n');
+    }
 }
