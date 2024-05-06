@@ -2,7 +2,7 @@ import { Message } from 'discord.js';
 
 import { Trigger } from './trigger.js';
 import { EventData } from '../models/internal-models.js';
-import { Logger } from '../services/logger.js';
+// import { Logger } from '../services/logger.js';
 import { ClientUtils, FormatUtils, MessageUtils } from '../utils/index.js';
 
 const URL_REGEX =
@@ -19,8 +19,6 @@ export class TokenTrigger implements Trigger {
     public triggered(msg: Message<boolean>): boolean {
         this.tokens = [];
         const content = msg.content;
-
-        Logger.info('message.content: ' + (content.length !== 0 ? content : 'empty'));
 
         if (!content) {
             return false;
@@ -39,9 +37,9 @@ export class TokenTrigger implements Trigger {
             }
         }
 
-        Logger.info(FormatUtils.multiLines(['urls: ', ...urls]));
-        Logger.info(FormatUtils.multiLines(['tokenLikes:', ...tokenLikes]));
-        Logger.info(FormatUtils.multiLines(['tokens:', ...this.tokens]));
+        // Logger.info(FormatUtils.multiLines(['urls: ', ...urls]));
+        // Logger.info(FormatUtils.multiLines(['tokenLikes:', ...tokenLikes]));
+        // Logger.info(FormatUtils.multiLines(['tokens:', ...this.tokens]));
 
         return this.tokens.length > 0;
     }
