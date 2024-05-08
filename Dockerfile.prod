@@ -1,4 +1,6 @@
-FROM node:16
+# syntax=docker/dockerfile:1
+
+FROM node:20.12.2-slim
 
 # Create app directory
 WORKDIR /app
@@ -7,13 +9,18 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install packages
-RUN npm install
+RUN --mount=type=cache,target=/root/.npm npm ci --omit=dev
 
 # Copy the app code
 COPY . .
 
 # Build the project
-RUN npm run build
+ARG CONFIG
+RUN --mount=type=secret <<EOF
+  mkdir config
+  echo $CONFIG | base64 --decode > config/config.json
+  npm run build
+EOF
 
 # Expose ports
 EXPOSE 3001
