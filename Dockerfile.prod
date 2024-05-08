@@ -9,18 +9,18 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install packages
-RUN --mount=type=cache,target=/root/.npm npm ci --omit=dev
+RUN --mount=type=cache,id=npm,target=/root/.npm npm ci --omit=dev
 
 # Copy the app code
 COPY . .
 
 # Build the project
 ARG CONFIG
-RUN --mount=type=secret <<EOF
+RUN --mount=type=secret,id=config,target=/app/config/config.json <<EOF
   mkdir config
   echo $CONFIG | base64 --decode > config/config.json
-  npm run build
 EOF
+RUN npm run build
 
 # Expose ports
 EXPOSE 3001
