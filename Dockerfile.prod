@@ -10,14 +10,15 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install packages
-RUN --mount=type=cache,id=npm,target=/root/.npm npm ci --omit=dev
+RUN --mount=type=cache,id=s/273a7847-5034-41cf-8c77-3a8ef9afaf44-/root/.npm,target=/root/.npm \
+  npm ci --omit=dev
 
 # Copy the app code
 COPY . .
 
 # Build the project
 ARG CONFIG
-RUN --mount=type=secret,id=config,target=/app/config/config.json <<EOF
+RUN --mount=type=secret,target=/app/config/config.json <<EOF
   mkdir config
   echo $CONFIG | base64 --decode > config/config.json
 EOF
