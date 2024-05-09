@@ -3,20 +3,13 @@
 ARG NODE_VERSION=$(cat .node-version)
 FROM node:${NODE_VERSION}-slim
 
-# Create app directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install packages
 RUN --mount=type=cache,id=s/273a7847-5034-41cf-8c77-3a8ef9afaf44-/root/.npm,target=/root/.npm \
   npm ci --omit=dev
 
-# Copy the app code
 COPY . .
-
-# Build the project
 ARG CONFIG
 RUN --mount=type=secret,target=/app/config/config.json <<EOF
   mkdir config
@@ -24,8 +17,5 @@ RUN --mount=type=secret,target=/app/config/config.json <<EOF
 EOF
 RUN npm run build
 
-# Expose ports
 EXPOSE 3001
-
-# Run the application
 CMD [ "node", "dist/start-manager.js" ]
