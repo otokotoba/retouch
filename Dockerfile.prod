@@ -6,12 +6,11 @@ FROM node:${NODE_TAG}
 WORKDIR /app
 
 COPY package*.json ./
-RUN --mount=type=cache,id=s/273a7847-5034-41cf-8c77-3a8ef9afaf44-/root/.npm,target=/root/.npm \
-  npm ci --omit=dev
+RUN npm ci --omit=dev
 
 COPY . .
 ARG CONFIG
-RUN --mount=type=secret,id=s/273a7847-5034-41cf-8c77-3a8ef9afaf44-/app/config/config.json,target=/app/config/config.json <<EOF
+RUN <<EOF
   mkdir config
   echo $CONFIG | base64 --decode > config/config.json
 EOF
