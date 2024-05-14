@@ -53,7 +53,8 @@
         "pino-pretty": "10.3.1",
         "pm2": "^5.3.1",
         "reflect-metadata": "^0.2.1",
-        "remove-markdown": "0.5.0"
+        "remove-markdown": "0.5.0",
+        "typescript": "^5.4.5"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.2",
@@ -75,8 +76,7 @@
         "mocha": "^10.4.0",
         "prettier": "^3.2.5",
         "sinon": "^17.0.1",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.4.2"
+        "ts-node": "^10.9.2"
     },
     "packageManager": "npm@10.5.2+sha256.df0a1f7691654b94786013e5d5b80a873a7ffbae9c82c3bec8b5db76bc3b7dfd"
 }
